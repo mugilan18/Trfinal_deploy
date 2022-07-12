@@ -67,7 +67,7 @@ const InnerNav = () => {
   const logout = () => {
     window.localStorage.clear();
     removeCookie("userjwt")
-      setAnchorEl(null);
+      // setAnchorEl(null);
      return (window.location.href = "/");
   }
   const handleClick = (event) => {

@@ -463,7 +463,7 @@ BACK
           initialValue={initialcontent}
           apiKey="au50u78j9vjabzcr4icg4v3oknubu08ifv9rfstawlzmdobp"
           init={{
-            height: "90vh",
+            height: "100vh",
             menubar: true,
             selector: "textarea",
             external_plugins: {

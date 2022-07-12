@@ -24,9 +24,10 @@ const postInfo = function (req, res, next) {
 
 const getSelectedExplist = async function (req, res, next) {
   let lab= req.body.lab
+  let college= req.body.college
   console.log(lab)
   try {
-    const metas = await MetaInfo.find({labtype:lab});
+    const metas = await MetaInfo.find({ $and: [ { labtype:lab }, {college:college}] } );
 console.log(metas)
     res.json({ data: metas, totalCount: metas.length });
   } catch (err) {

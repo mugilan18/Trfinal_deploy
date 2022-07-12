@@ -33,7 +33,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useHistory, Link } from "react-router-dom";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
+import { useCookies } from "react-cookie";
 
 const useStyles = makeStyles({
 
@@ -52,6 +52,7 @@ const useStyles = makeStyles({
 const OuterNav = () => {
 
     const classes = useStyles();
+    const [cookies, setCookie, removeCookie] = useCookies(["userjwt"]);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -69,11 +70,11 @@ const OuterNav = () => {
     
     const runz = () => {
       window.localStorage.clear();
-      
+      removeCookie("userjwt")
      return (window.location.href = "/");
     }
     
-  
+
  
     
     return (

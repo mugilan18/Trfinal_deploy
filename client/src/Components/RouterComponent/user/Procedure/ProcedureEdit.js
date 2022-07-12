@@ -471,7 +471,7 @@ setOpen(true);
           initialValue={initialcontent}
           apiKey="au50u78j9vjabzcr4icg4v3oknubu08ifv9rfstawlzmdobp"
           init={{
-            height: "85vh",
+            height: "90%",
             width:"100%",
             menubar: true,
             selector: "textarea",
@@ -574,4 +574,4 @@ setOpen(true);
   );
 };
 
-export default App;
+export default App ;

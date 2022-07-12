@@ -56,10 +56,12 @@ const Procedurelist = () => {
 
     else {
       let lab = user.labtype
+      let college = user.collegeName
       fetch(`${ApiUrl}/moreInfo/selected`, {
         method: "POST",
         body: JSON.stringify({
-          lab:lab
+          lab:lab,
+          college:college
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
@@ -83,16 +85,21 @@ const Procedurelist = () => {
 
   const editProc = (id) => {
     // window.localStorage.clear();
-    axios.get(`${ApiUrl}/moreInfo/${id}`).then((res) => {
-      window.localStorage.setItem("proceId", res.data.id);
+    let  list=["admin","superadmin"]
+    if(list.includes(user.role))
+    {
+      axios.get(`${ApiUrl}/moreInfo/${id}`).then((res) => {
+        window.localStorage.setItem("proceId", res.data.id);
+  
+      });
+      dispatch({
+        type: actionTypes.SET_PROSID,
+        prosid: id,
+      });
+  
+      history.push(`/editProce/${id}`);
+    }
 
-    });
-    dispatch({
-      type: actionTypes.SET_PROSID,
-      prosid: id,
-    });
-
-    history.push(`/editProce/${id}`);
   };
 
   return (
