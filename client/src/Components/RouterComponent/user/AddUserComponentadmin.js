@@ -57,6 +57,13 @@ const AddUserComponentadmin = (props) => {
   const [options1, setOptions1] = useState();
   const [options2, setOptions2] = useState();
 
+  const [universitylist, setUniversitylist] = useState();
+  const [collegelist, setCollegelist] = useState();
+  const [departmentlist, setDepartmentlist] = useState();
+  const [lablist, setLablist] = useState();
+  const [procedurelist, setProcedurelist] = useState();
+  
+
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = useState(null);
   const [messageerror, setMessageerror] = useState(null);
@@ -65,58 +72,85 @@ const AddUserComponentadmin = (props) => {
   const useridval = user._id
   const [labTypetosent,setLabTypetosent] = useState()
   const [experimentNametosent,setExperimentNametosent] =useState()
-const [department,setDepartment]=useState()
+  const [department,setDepartment]=useState()
   const [descriptionerror, setDescriptionerror] = useState();
   const [laberror, setLaberror] = useState();
   const [procedureerror, setProcedureerrorr] = useState();
+  const [collegeName, setCollegeName] = useState("");
+  const [university, setUniversity] = useState();
 
-  useEffect(() => {
-    console.log(user);
+useEffect(()=>{
+  fetch(`${ApiUrl}/moreInfo/all/university`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setUniversitylist(data.ids);
+      });
+},[])
+
+  // getcollege
+  const fetchcollege = (university) => {
+    setUniversity(university);
+    setCollegeName("");
+    setDepartment("");
+
+    fetch(`${ApiUrl}/moreInfo/respectivecollege`, {
+      method: "POST",
+
+      body: JSON.stringify({
+        university: university,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        setCollegelist(json.ids);
+        console.log(json);
+      });
+  };
+
+
+  // get department
+  const fetchdepartment = (college) => {
+    setCollegeName(college);
+    setDepartment();
+
     fetch(`${ApiUrl}/moreInfo/department`, {
       method: "POST",
 
       body: JSON.stringify({
-        college: user.collegeName
+        college: college,
       }),
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
+        "Content-type": "application/json; charset=UTF-8",
+      },
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
+        setDepartmentlist(json.ids);
 
-        setOptions(json.ids)
+        console.log(json);
+      });
+  };
 
-        console.log(json)
-      }
-      );
-  }, []);
 
-  // useEffect(() => {
-  //   axios.get(`${ApiUrl}/labrotories`).then((result) => {
-  //     const resultant = Object.getOwnPropertyDescriptor(
-  //       result.data[0],
-  //       labTypetosent || "Physics"
-  //     ).value;
-  //     const res = resultant.map((val) => ({ text: val, value: val }));
-  //     setOptions1(res);
-  //     console.log(res)
-  //   });
-  // }, [labTypetosent]);
-
-  const fetchlab = (aa) => {
+  
+  const fetchlab = (department) => {
     setLabTypetosent()
     setExperimentNametosent()
     setOptions1()
     setOptions2()
 
-    console.log("heheheeh", aa)
-    setDepartment(aa)
-    fetch(`${ApiUrl}/moreInfo/labs`, {
+   
+    setDepartment(department)
+    fetch(`${ApiUrl}/moreInfo/labs/depandclg`, {
       method: "POST",
 
       body: JSON.stringify({
-        department: aa
+        department: department,
+        college:collegeName
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
@@ -126,7 +160,7 @@ const [department,setDepartment]=useState()
       .then(json => {
 
         // setOptions2(json.ids)
-        setOptions1(json.ids)
+        setLablist(json.ids)
         console.log(json)
 
       }
@@ -135,16 +169,15 @@ const [department,setDepartment]=useState()
 
 
   const fetchexperiment = (newValue) => {
+    console.log(user.collegeName,"user clg")
     setLabTypetosent(newValue);
-    setExperimentNametosent()
-   
-    setOptions2()
-    // setOptions1([])
+    
     fetch(`${ApiUrl}/moreInfo/experiment`, {
       method: "POST",
    
       body: JSON.stringify({
-        lab: newValue
+        lab: newValue,
+        college:collegeName
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8"
@@ -154,13 +187,12 @@ const [department,setDepartment]=useState()
   .then(json => 
     {
 
-      setOptions2(json.ids)
+      setProcedurelist(json.ids)
 
    console.log(json)
     }
     );
   }
-
 
 
 
@@ -255,16 +287,19 @@ const [department,setDepartment]=useState()
           value={data.procedureDescription}
           onChange={onChange}
         />
+
+
         <p className='errormsg'>{descriptionerror}</p>
-     {options && <>   <label>Department</label>
+
+        {universitylist && <>   <label>University</label>
         <Autocomplete
-                value={department}
+                value={university}
                 onChange={(event, newValue) => {
-                  fetchlab(newValue)
+                  fetchcollege(newValue)
                   console.log(newValue)
                 }}
 
-                options={options.map((option) => option)}
+                options={universitylist.map((option) => option)}
                 id="controllable-states-demo"
                 // options={options}
                 sx={{ width: 300 }}
@@ -274,13 +309,51 @@ const [department,setDepartment]=useState()
         </>
 }
 
-     {options1 &&<> <label>Lab Name</label>
+
+{collegelist && <>   <label>College</label>
+        <Autocomplete
+                value={collegeName}
+                onChange={(event, newValue) => {
+                  fetchdepartment(newValue);
+                  setDepartment();
+                }}
+
+                options={collegelist.map((option) => option)}
+                id="controllable-states-demo"
+                // options={options}
+                sx={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+        </>
+}
+
+ 
+
+     {departmentlist && <>   <label>Department</label>
+        <Autocomplete
+                value={department}
+                onChange={(event, newValue) => {
+                  fetchlab(newValue)
+                  console.log(newValue)
+                }}
+
+                options={departmentlist.map((option) => option)}
+                id="controllable-states-demo"
+                // options={options}
+                sx={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+       
+        </>
+}
+
+     {lablist &&<> <label>Lab Name</label>
         <Autocomplete
         value={labTypetosent}
         onChange={(event, newValue) => {
           fetchexperiment(newValue);
         }}
-        options={options1.map((option) => option)}
+        options={lablist.map((option) => option)}
         id="controllable-states-demo"
         // options={options}
         sx={{ width: 300 }}
@@ -289,14 +362,15 @@ const [department,setDepartment]=useState()
        <p className='errormsg'>{laberror}</p>
       </> 
 }
-     {options2&&<>   <label>Procedure Name</label>
+
+     {procedurelist&&<>   <label>Procedure Name</label>
         <Autocomplete
         
         value={experimentNametosent}
         onChange={(event, newValue) => {
           setExperimentNametosent(newValue);
         }}
-        options={options2.map((option) => option)}
+        options={procedurelist.map((option) => option)}
         id="controllable-states-demo"
         // options={options}
         sx={{ width: 300 }}

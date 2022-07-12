@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 const customStyles = {
   content: {
-    top: "50%",
+    top: "40%",
     left: "50%",
     width: "100%",
     height: "100%",
@@ -91,11 +91,11 @@ const customStylesshare = {
 
 const boxstyle = {
   position: 'absolute',
-  top: '50%',
+  top: '55%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 600,
-  height:500,
+  height:600,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,

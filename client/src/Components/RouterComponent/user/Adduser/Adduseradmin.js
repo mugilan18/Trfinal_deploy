@@ -223,6 +223,17 @@ console.log(user)
       </div>
       <br/>
 
+      <div>
+      <label>University:&nbsp;&nbsp; </label>
+      <TextField
+        disabled
+        id="outlined-size-small"
+        size="small"
+        value={user.university}
+      />
+      </div>
+      <br/>
+
      <div>
       <label>College:&nbsp;&nbsp; </label>
       <TextField
