@@ -528,6 +528,24 @@ const updateval = (event) => {
             </form>
             </div>
             <div>
+            {graphview &&
+          // <Newsinglegraph lineargraphval={lineargraphval} minval={minval} maxval={maxval} />
+          <>
+          <h5>Graph:</h5>
+          {
+            graph1data ?  <Graphcomponent data={graph1data}/> : <div><p style={{color:'red'}}>*No Graph for this experiment*</p></div>
+          }
+            {
+            graph2data && <Graphcomponent data={graph2data}/>
+          }
+          
+         
+          </>
+          
+            }
+          </div>
+
+            <div>
               <h6><strong>RESULT:</strong></h6>
               <Editor
               initialValue={expresult}
@@ -550,22 +568,7 @@ const updateval = (event) => {
       />
            
             </div>
-            <div>
-            {graphview &&
-          // <Newsinglegraph lineargraphval={lineargraphval} minval={minval} maxval={maxval} />
-          <>
-          {
-            graph1data && <Graphcomponent data={graph1data}/>
-          }
-            {
-            graph2data && <Graphcomponent data={graph2data}/>
-          }
-          
-         
-          </>
-          
-            }
-          </div>
+        
       
               
           </div>

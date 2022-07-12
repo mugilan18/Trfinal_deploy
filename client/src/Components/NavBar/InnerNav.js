@@ -84,13 +84,13 @@ const InnerNav = () => {
   <div>
      <Toolbar>
              <Typography onClick={runz} sx={{ flexGrow: 1 }} > <span>Test</span><span style={{backgroundColor:"#F1C232"}}>RunZ</span></Typography>
-             <Avatar  size="small"  style={{backgroundColor:"#F1C232",marginRight:"70px",color:"black"}} className={classes.logout} onClick={handleClick}>
+             {/* <Avatar  size="small"  style={{backgroundColor:"#F1C232",marginRight:"70px",color:"black"}} className={classes.logout} onClick={handleClick}>
                     {`${user.name}`.substring(0, 2)}
-</Avatar>
-
+</Avatar> */}
+ <Typography onClick={logout} component="button"  style={{backgroundColor:"#F1C232" ,marginRight:"70px",padding:"5px",borderRadius:"5px",borderWidth: "0.5px",borderColor:'gray'}}>Logout</Typography>
 
       {/* <button className={classes.logout} style={{color:"white"}} onClick={handleClick}>hello</button> */}
-      <Menu
+      {/* <Menu
         id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
@@ -99,7 +99,7 @@ const InnerNav = () => {
       >
         <MenuItem onClick={profile}>Profile</MenuItem>
         <MenuItem onClick={logout}>Logout</MenuItem>
-      </Menu>
+      </Menu> */}
 
            </Toolbar>
   </div>

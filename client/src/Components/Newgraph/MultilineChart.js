@@ -84,14 +84,15 @@ const MultilineChart = ({ data, dimensions }) => {
     const line = d3.line()
       .x((d) => xScale(d.X))
       .y((d) => yScale(d.Y))
-    //   .curve(d3.curveCardinal);
+      // .curve(d3.curveCardinal);
     svg.selectAll(".line")
       .data(data)
       .enter()
       .append("path")
       .attr("fill", "none")
       .attr("stroke", (d) => d.color)
-      // .attr("stroke", "blue")
+      .attr("stroke-width",2)
+ 
       .attr("d", (d) => line(d.items));
   }, [data]); // Redraw chart if data changes
  

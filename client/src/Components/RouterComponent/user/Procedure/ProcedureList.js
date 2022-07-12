@@ -112,7 +112,7 @@ const Procedurelist = () => {
             onRowClick={(e, data) => editProc(data.id)}
             options={{
               // actionsColumnIndex: -1, grouping:true, 
-              pageSizeOptions: [5, 10], pageSize: 5
+              pageSizeOptions: [5, 10,15], pageSize: 10
             }}
 
             actions={[

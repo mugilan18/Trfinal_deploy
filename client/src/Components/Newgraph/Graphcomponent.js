@@ -83,12 +83,12 @@ useEffect(()=>{
 
 schcData = {
     name: "VCIT",
-    color: "#5e4fa2",
+    color: "blue",
     items: dataarr
   };
   dummyData = {
     name: "VCIT",
-    color: "#232323",
+    color: "green",
     items: dataarr2
   };
   dummyData2 = {
@@ -107,7 +107,7 @@ schcData = {
     <div className="App" style={{backgroundColor:"white"}}>
     {  graph1 &&
     <>
-      <h5>Graph:</h5>
+      
       <MultilineChart  data={[graph1,graph2,graph3]}
       dimensions={dimensions}/>
       </>
