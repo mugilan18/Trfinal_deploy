@@ -143,6 +143,8 @@ const Observation = ({ data ,datavalues }) => {
 
 // graph 
 const graph =()=>{
+  setGraph1data()
+  setGraph2data()
   setGraphview(true)
   var graph1x1=[]
   var graph1x2=[]

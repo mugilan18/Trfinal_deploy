@@ -23,6 +23,7 @@ const read = async(req, res, next) => {
 const update = (req, res, next) => {
   console.log(req.body)
   const {
+    university,
     collegeName,
     department,
     country,
@@ -51,6 +52,9 @@ const update = (req, res, next) => {
       }
       if (showOnce) {
         user.showOnce = showOnce;
+      }
+      if (university) {
+        user.university = university;
       }
       if (collegeName) {
         user.collegeName = collegeName;
