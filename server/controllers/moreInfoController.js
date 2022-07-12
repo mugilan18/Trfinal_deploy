@@ -133,9 +133,10 @@ const getLabs = async function (req, res, next) {
 
 const getExplist = async function (req, res, next) {
   labval = req.body.lab
-  console.log("hai",labval)
+  college= req.body.college
+  console.log("hai",labval,college)
   try {
-    const metas = await MetaInfo.find( { labtype:labval });
+    const metas = await MetaInfo.find({ $and: [ { labtype:labval }, {college:college}] } )
     const ids = metas.map((obj) => obj.ProcedureName);
     res.json({ ids});
     console.log( ids)

@@ -85,13 +85,15 @@ const AddUserComponent = (props) => {
   //   });
   // }, [labTypetosent]);
   const fetchexperiment = (newValue) => {
+    console.log(user.collegeName,"user clg")
     setLabTypetosent(newValue);
     setOptions1([])
     fetch(`${ApiUrl}/moreInfo/experiment`, {
       method: "POST",
    
       body: JSON.stringify({
-        lab: newValue
+        lab: newValue,
+        college:user.collegeName
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8"
@@ -203,6 +205,8 @@ const AddUserComponent = (props) => {
           onChange={onChange}
         />
         <p className='errormsg'>{descriptionerror}</p>
+
+
         <label>Lab Type</label>
           <Autocomplete
         value={labTypetosent}
@@ -217,6 +221,8 @@ const AddUserComponent = (props) => {
         renderInput={(params) => <TextField {...params} />}
       />
         <p className='errormsg'>{laberror}</p>
+
+
         <label>Procedure Name</label>
         <Autocomplete
         value={experimentNametosent}
