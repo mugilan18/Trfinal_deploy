@@ -149,10 +149,10 @@ else{
      console.log("no such user")
     }
   else {
-      const { _id, email, name, role ,showOnce,collegeName,state,country,department,semester,year,labtype} = user;
-      console.log(user)
+      const { _id, email, name, role ,showOnce,collegeName,state,country,department,semester,year,labtype,university} = user;
+      console.log("hello",user)
       res.json({
-        user: { _id, email, name, role,showOnce,collegeName,state,country,department,semester,year,labtype},
+        user: { _id, email, name, role,showOnce,collegeName,state,country,department,semester,year,labtype,university},
       });
     }
   })

@@ -42,7 +42,7 @@ fetch(`${process.env.REACT_APP_API}/validateuser`, {
             type: actionTypes.SET_USER,
             user: json.user,
           });
-    // console.log("lasdkl",user.role)
+    console.log("lasdkl",user)
     // return ()=>abortcont.abort()
   }
   );
