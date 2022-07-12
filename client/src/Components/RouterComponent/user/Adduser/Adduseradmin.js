@@ -109,7 +109,8 @@ console.log(user)
               role:role,
               collegeName:user.collegeName,
               department:user.department,
-              labtype:lab
+              labtype:lab,
+              university: user.university,
             }),
           }).then(response => response.json())
             .then(data => {

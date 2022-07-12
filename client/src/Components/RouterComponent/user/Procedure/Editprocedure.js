@@ -69,7 +69,7 @@ const Editprocedure = (props) => {
       setYear(res.data.year)
       setSemester(res.data.semester)
       setCollege(res.data.college)
-      setUniversity(res.data.college)
+      setUniversity(res.data.university)
       setMoreinfoid(res.data._id)
         });
       }, [content]);
@@ -132,6 +132,7 @@ const Editprocedure = (props) => {
                 year: year,
                 college: college,
                 semester: semester,
+                university:university,
                 _id:moreinfoid
               })
               .then((res) => {

@@ -27,9 +27,12 @@ const MultilineChart = ({ data, dimensions }) => {
 
     }
     console.log(xmin)
+    console.log(xmin)
+    console.log(xmin)
+    console.log(xmin)
     const xScale = d3.scaleLinear()
    
-    .domain([ d3.min(xmin),d3.max(xmax) +d3.min(xmin)])
+    .domain([ d3.min(xmin),d3.max(xmax) +Math.abs(d3.min(xmin))])
     // .domain([
     //   d3.min(data[0].items, (d) => d.X)  ,
     //   d3.max(data[0].items, (d) => d.X) 
@@ -48,7 +51,7 @@ const MultilineChart = ({ data, dimensions }) => {
     //     d3.max(data[0].items, (d) => d.Y) 
       
     //   ])
-    .domain([ d3.min(ymin),d3.max(ymax)+d3.min(ymin) ])
+    .domain([ d3.min(ymin),d3.max(ymax)+Math.abs(d3.min(ymin)) ])
       .range([height, 0]);
     // Create root container where we will append all other chart elements
     const svgEl = d3.select(svgRef.current);

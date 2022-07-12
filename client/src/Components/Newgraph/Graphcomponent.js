@@ -51,15 +51,6 @@ const [graph3, setGraph3] = useState();
 const [graph4, setGraph4] = useState();
 
 
-const X3=[5, 30, 45, 60, 70, 85, 90]
-const Y3=[5, 30, 29, 40, 50, 20, 60]
-
-const X2=[20, 30, 40, 50, 60, 70, 80]
-const Y2=[10, 30, 15, 40, 30, 60, 40]
-
-
-const X1=[-10, -5, 0, 40, 45, 50, 85]
-const Y1=[-20, -15, 20, 60, 70, 50, 85]
 
 let schcData={}
 let dummyData={}
@@ -116,7 +107,7 @@ schcData = {
     <div className="App" style={{backgroundColor:"white"}}>
     {  graph1 &&
     <>
-      <h3>Multi Series</h3>
+      <h5>Graph:</h5>
       <MultilineChart  data={[graph1,graph2,graph3]}
       dimensions={dimensions}/>
       </>

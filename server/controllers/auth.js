@@ -27,7 +27,8 @@ const authAccountregister = (req, res) => {
         role : req.body.role || "student",
         labtype:req.body.labtype||[],
         department:req.body.department||"",
-        collegeName:req.body.collegeName||""
+        collegeName:req.body.collegeName||"",
+        university:req.body.university||""
       }).then((user)=>{
         console.log(user.json())
        return res.json({status:"ok"})
