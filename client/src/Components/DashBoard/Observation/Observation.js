@@ -510,7 +510,6 @@ const updateval = (event) => {
       <Grid container className={classes.root} spacing={2}>
         <Grid item >
           <div className={classes.paper}>
-            <h1>Observation section</h1>
           
              {/* <Contextshared value={htmlContext} dataV={data} datavalues={datavalues}/>  */}
              {htmlContext? 

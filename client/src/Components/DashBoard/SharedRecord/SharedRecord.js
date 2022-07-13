@@ -7,8 +7,8 @@ import Lodaing from "../../RouterComponent/user/Lodaing";
 import { Editor } from '@tinymce/tinymce-react';
 
 
-
-import React, { useEffect } from "react";
+import {VscGraphLine}from "react-icons/vsc"
+import React, { useEffect ,useRef} from "react";
 import * as html2json from "html2json";
 import parse from "html-react-parser";
 import axios from "axios";
@@ -34,6 +34,8 @@ import Snackbar from '@mui/material/Snackbar';
 import jsPDF from "jspdf"
 import { SiMicrosoftword } from 'react-icons/si';
 import ApiService from "../../../Sevices/ApiService";
+import Graphcomponent from "../../Newgraph/Graphcomponent";
+
 const useStyles = makeStyles({
   root: {
     width: "1000px",
@@ -56,6 +58,16 @@ const SharedRecord = ({ data ,datavalues }) => {
   const [expresultval,setExpresultval]=React.useState()
   const vertical ="button"
   const horizontal = "center"
+  const [graphview,setGraphview] = React.useState(false);
+  const [lineargraphval,setLineargraphval]=React.useState();
+  const [minval,setMinval]=React.useState();
+  const [maxval,setMaxval]=React.useState();
+  
+
+  const editorRef = useRef(null);
+  const [graph1data,setGraph1data]=React.useState()
+  const [graph2data,setGraph2data]=React.useState()
+
   let {token} = useParams();
   //console.log({ ...data });
   React.useEffect(() => {
@@ -140,6 +152,96 @@ const SharedRecord = ({ data ,datavalues }) => {
       });
   }, [data.experimentName]);
 
+
+
+  // graph 
+const graph =()=>{
+  setGraph1data()
+  setGraph2data()
+  setGraphview(true)
+  var graph1x1=[]
+  var graph1x2=[]
+  var graph1x3=[]
+  var graph1x4=[]
+
+  var graph1y1=[]
+  var graph1y2=[]
+  var graph1y3=[]
+  var graph1y4=[]
+
+  var graph2x1=[]
+  var graph2x2=[]
+  var graph2x3=[]
+  var graph2x4=[]
+
+  var graph2y1=[]
+  var graph2y2=[]
+  var graph2y3=[]
+  var graph2y4=[]
+ 
+  var lineargraph=[]
+  // first graph
+  for (var y=1 ; y<5;y++){
+    for (var x = 1; x < 20; x++) {
+      var ele = document.getElementById(`graph1x${y}${x}`);
+      if(ele){
+        eval(`graph1x${y}`).push(parseFloat(ele.value))
+      }
+    }
+    for (var x = 1; x < 20; x++) {
+      var ele = document.getElementById(`graph1y${y}${x}`);
+      if(ele){
+        eval(`graph1y${y}`).push(parseFloat(ele.value))
+      }
+     
+    }
+  }
+  // second graph
+  for (var y=1 ; y<5;y++){
+    for (var x = 1; x < 20; x++) {
+      var ele = document.getElementById(`graph2x${y}${x}`);
+      if(ele){
+        eval(`graph2x${y}`).push(parseFloat(ele.value))
+      }
+    }
+    for (var x = 1; x < 20; x++) {
+      var ele = document.getElementById(`graph2y${y}${x}`);
+      if(ele){
+        eval(`graph2y${y}`).push(parseFloat(ele.value))
+      }
+     
+    }
+  }
+  console.log(graph1x1)
+  console.log(graph2x1)
+  if(graph1x1.length > 1 && graph1y1.length > 1){
+
+    setGraph1data({X1:graph1x1,Y1:graph1y1,X2:graph1x2,Y2:graph1y2,X3:graph1x3,Y3:graph1y3,X4:graph1x4,Y4:graph1y4})
+  }
+  if(graph2x1.length > 1 && graph2y1.length > 1){
+
+    setGraph2data({X1:graph2x1,Y1:graph2y1,X2:graph2x2,Y2:graph2y2,X3:graph2x3,Y3:graph2y3,X4:graph2x4,Y4:graph2y4})
+  }
+console.log(graph1data,graph2data)
+  // for (var n = 0; n < y_axis.length; n++) {
+   
+  //   let object = {
+  //     'x_axis': x_axis[n],
+  //     'y_axis':y_axis[n]
+  //   };
+  //   lineargraph.push(object)
+
+ // }
+  // setLineargraphval(lineargraph)
+  // setMaxval(Math.max(...y_axis) )
+  // setMinval(Math.min(...y_axis) )
+  // console.log(lineargraph)
+}
+
+
+
+
+
   const handleClosee = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -163,7 +265,7 @@ const SharedRecord = ({ data ,datavalues }) => {
       <Grid container className={classes.root} spacing={2}>
         <Grid item >
           <div className={classes.paper}>
-            <h1>Submitted section</h1>
+            <h5>Submitted section</h5>
            
              {/* <Contextshared value={htmlContext} dataV={data} datavalues={datavalues}/>  */}
              {htmlContext? 
@@ -179,6 +281,23 @@ const SharedRecord = ({ data ,datavalues }) => {
                
             </form>
       
+          </div>
+          <div>
+            {graphview &&
+          // <Newsinglegraph lineargraphval={lineargraphval} minval={minval} maxval={maxval} />
+          <>
+          <h5>Graph:</h5>
+          {
+            graph1data ?  <Graphcomponent data={graph1data}/> : <div><p style={{color:'red'}}>*No Graph for this experiment*</p></div>
+          }
+            {
+            graph2data && <Graphcomponent data={graph2data}/>
+          }
+          
+         
+          </>
+          
+            }
           </div>
           <br /><br />
 {/* {expresultval &&
@@ -250,7 +369,8 @@ const SharedRecord = ({ data ,datavalues }) => {
           </div>
           <br /><br />
           <Stack spacing={2} direction="row" style={{ position: "relative", left: "25%" }}>
-      
+          <Button variant="contained"   style={{ backgroundColor:"#F1C232",color:"black" }} onClick={graph}>Graph &nbsp;&nbsp;&nbsp;<VscGraphLine/></Button>
+          
      
       {/* <Button variant="contained" onClick={generate}>generate &nbsp;&nbsp;&nbsp;<GrDocumentPdf/></Button> */}
      
