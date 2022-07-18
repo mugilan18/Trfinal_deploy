@@ -45,6 +45,7 @@ import Lablist from "./user/Lablist";
 import Assignedlist from "./user/Assignedlist";
 import Landingpage from "./user/Landingpage/Landingpage";
 import NewProcedure from "./user/Procedure/NewProcedure";
+import SuperAdmindetail from "./user/Settingstab/Details/SuperAdmindetail";
 const RouterComponent = (props) => {
   const [{ user }, dispatch] = useStateValue();
  
@@ -110,7 +111,7 @@ const RouterComponent = (props) => {
             {/* <AdminRoute path="/addProce" exact component={AddProcedure} auth={props.user}/> */}
             <AdminRoute path="/addProce" exact component={NewProcedure} auth={props.user}/>
 
-
+            <AdminRoute path="/superadmindetailcollege" exact component={SuperAdmindetail} auth={props.user}/>
 
 
             <AdminRoute

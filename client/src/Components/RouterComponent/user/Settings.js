@@ -16,7 +16,7 @@ import Adduser from './Settingstab/Adduser';
 import Manageuserpanel from './Settingstab/Manage/Manageuserpanel';
 import User from './User';
 import { useStateValue } from "../../../data/StateProvider";
-import Details from './Settingstab/Details';
+import Details from './Settingstab/Details/Details';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

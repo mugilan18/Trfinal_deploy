@@ -84,7 +84,11 @@ const postUser =async (req, res, next) => {
     procedureDescription: req.body.procedureDescription,
     labType: req.body.labType,
     experimentName: req.body.experimentName,
-    userid: req.body.userId
+    userid: req.body.userId,
+    collegeName:req.body.collegeName,
+    university:req.body.university,
+    department:req.body.department
+
   });
   newUser
     .save()

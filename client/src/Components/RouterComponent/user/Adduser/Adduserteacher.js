@@ -104,6 +104,7 @@ const Adduserteacher = () => {
               collegeName: user.collegeName,
               department: user.department,
               university: user.university,
+              labtype:lab
             }),
           })
             .then((response) => response.json())

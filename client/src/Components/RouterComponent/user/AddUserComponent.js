@@ -61,6 +61,11 @@ const AddUserComponent = (props) => {
   const [{ user }, dispatch] = useStateValue();
   const username = user.name
   const useridval = user._id
+
+  const usercollegeName = user.collegeName
+  const useruniversity = user.university
+  const userdepartment= user.department
+
   const [labTypetosent,setLabTypetosent] = useState()
   const [experimentNametosent,setExperimentNametosent] =useState()
 
@@ -134,7 +139,10 @@ const AddUserComponent = (props) => {
         procedureDescription: data.procedureDescription,
         labType: labTypetosent,
         experimentName: experimentNametosent,
-        userId: useridval
+        userId: useridval,
+        collegeName:usercollegeName,
+        university:useruniversity,
+        department:userdepartment
       };
       console.log("list user", user)
       ApiService.addUser(user)
