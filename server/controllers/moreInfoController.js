@@ -116,11 +116,26 @@ const getDepartment = async function (req, res, next) {
 };
 
 const getLabs = async function (req, res, next) {
-  departmentval = req.body.department
+  let departmentval = req.body.department
+  let collegeName=req.body.collegeName
   console.log("hai",departmentval)
   try {
     const metas = await MetaInfo.aggregate( [
-        {$match:{ department:departmentval}}, 
+        {
+          $match: {
+            $and: [ 
+                {department: department}, 
+                {college:collegeName}, 
+             
+            ]
+       }
+          
+          
+          
+          
+          
+          
+        }, 
         {$group: { _id: "$labtype" }}
       
     ] );

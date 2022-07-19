@@ -51,11 +51,20 @@ const getlabdetail =  async function (req, res, next) {
           
         ] );
         const ids = metas.map((obj) => obj._id);
-        console.log(ids)
-        const totalrunz = await User.find({  $and: [{ collegeName:college},{department:department},{labType: { $in: ids }}]})
+        console.log(students)
+        const totalrunz = await ExperimentInfo.find({  $and: [{ collegeName:college},{department:department},{labType: { $in: ids }}]})
             // field: { $in: ids } })
 
-        console.log(totalrunz)
+        console.log(totalrunz.length)
+
+        res.json({
+            "admin":admin.length,
+            "teachers":teachers.length,
+            "students":students.length,
+            "listofrunz":totalrunz.length,
+            "list":ids,
+            "department":department
+        })
 
     }
     catch (err) {
@@ -65,11 +74,19 @@ const getlabdetail =  async function (req, res, next) {
 };
 
 
+const getlabdetailadmin= async function(req,res){
+    let university =req.body.university
+    let college =req.body.collegeName
+    let department =req.body.department
+    try{}
+    catch (err) {
+        console.error(err);
+      }
+}
 
 
 
-
-module.exports = { getDepartmentandmemberdetails,getlabdetail};
+module.exports = { getDepartmentandmemberdetails,getlabdetail,getlabdetailadmin};
 
 
 

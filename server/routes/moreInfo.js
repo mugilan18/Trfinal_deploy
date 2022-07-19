@@ -18,7 +18,8 @@ const {
 
 const {
   getDepartmentandmemberdetails,
-  getlabdetail
+  getlabdetail,
+  getlabdetailadmin
 } = require("../controllers/detailsController");
 
 router.post("/", postInfo);
@@ -48,5 +49,6 @@ router.post("/selected",getSelectedExplist)
 
 router.post("/getdetail/university/college",getDepartmentandmemberdetails)
 router.post("/getdetail/university/college/department",getlabdetail)
+router.post("/getdetail/university/college/department/admin",getlabdetailadmin)
 
 module.exports = router;

@@ -129,6 +129,7 @@ function Addusersuperadmin() {
 
       body: JSON.stringify({
         department: department,
+        collegeName:college
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
