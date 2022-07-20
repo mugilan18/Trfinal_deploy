@@ -63,7 +63,7 @@ export default function Settings() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [{ user }, dispatch] = useStateValue();
-
+  let  list=["admin","superadmin"]
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -84,7 +84,7 @@ export default function Settings() {
           <Tab label="Custom Column" {...a11yProps(2)} style={{width:"200px",color:"black"}}/> */}
           {/* <Tab label="Add User" {...a11yProps(3)} style={{width:"200px",color:"black"}}/> */}
           {user.role !="student"? <Tab label="Manage User" {...a11yProps(0)} style={{width:"200px",color:"black"}}/>: null}
-          {user.role ==="admin"? <Tab label="Details" {...a11yProps(1)} style={{width:"200px",color:"black"}}/>: null}
+          {list.includes(user.role)? <Tab label="Details" {...a11yProps(1)} style={{width:"200px",color:"black"}}/>: null}
           {/* {user.role ==="superadmin"? <Tab label="Access Control"  {...a11yProps(4)} style={{width:"200px",color:"black"}}/> : null} */}
 
 {/* {console.log(User.role)} */}

@@ -25,66 +25,46 @@ const customStyles = {
 
 const Detailsadmin = () => {
     const [{ user }, dispatch] = useStateValue();
-    const[departmentlist,setDepartmentlist]=useState()
-    const[universitylist,setUniversitylist]=useState()
-    const[university,setUniversity]=useState()
-    const[collegelist,setCollegelist]=useState()
-    const[collegeName,setCollegeName]=useState()
     const [modalOpen, setModalOpen] = useState(false);
-    const[details,setDetails]=useState()
-    const history = useHistory()
+     const[details,setDetails]=useState()
+    const collegeName= user.collegeName
+    const university=user.university
+    const department=user.department
+    const [lablist,setLablist]=useState()
     useEffect(()=>{
 
-      fetch(`${ApiUrl}/moreInfo/all/university`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setUniversitylist(data.ids);
-      });
+      fetch(`${ApiUrl}/moreInfo/labs`, {
+        method: "POST",
+  
+        body: JSON.stringify({
+          department: department,
+          collegeName:collegeName
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          setLablist(json.ids);
+          console.log(json);
+        });
+    
       
     },[])
 
-// Modal controller
-const openModal = () => {
-  // window.localStorage.clear();
-  setModalOpen(() => true);
-};
-const closeModal = () => {
-  // window.localStorage.clear();
-  setModalOpen(() => false);
-};
 
-  // getcollege
-  const fetchcollege = (university) => {
-    setUniversity(university);
-    setCollegeName("");
- 
-
-    fetch(`${ApiUrl}/moreInfo/respectivecollege`, {
-      method: "POST",
-
-      body: JSON.stringify({
-        university: university,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        setCollegelist(json.ids);
-        console.log(json);
-      });
-  }
-
-  //getdetail
-  const getdetail=()=>{
-    fetch(`${ApiUrl}/moreInfo/getdetail/university/college`,{
+//getmoreinfo
+const getmoreinfo=(lab,college,university)=>{
+  console.log(lab,college,university)
+  
+  fetch(`${ApiUrl}/moreInfo/getdetail/university/college/department/admin`,{
     method: "POST",
-
+  
     body: JSON.stringify({
       university: university,
-      collegeName:collegeName
+      collegeName:collegeName,
+      lab:lab
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
@@ -93,106 +73,24 @@ const closeModal = () => {
     .then((response) => response.json())
     .then((json) => {
   
-     console.log(json.list)
-      if(json.list.length > 0){
-        setDepartmentlist(json.list)
-      }
-     
-
+   
+     setDetails(json)
+    console.log(json)
+    
+     setModalOpen(true)
+  
     }).catch((err)=>{
       console.log(err,"hhh")
     })
-}
-
-//getmoreinfo
-const getmoreinfo=(department,college,university)=>{
-console.log(department,college,university)
-
-fetch(`${ApiUrl}/moreInfo/getdetail/university/college/department`,{
-  method: "POST",
-
-  body: JSON.stringify({
-    university: university,
-    collegeName:collegeName,
-    department:department
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8",
-  },
-})
-  .then((response) => response.json())
-  .then((json) => {
-
- 
-   setDetails(json)
   
-   setModalOpen(true)
+  
+  
+  
+  }
 
-  }).catch((err)=>{
-    console.log(err,"hhh")
-  })
-
-
-
-
-}
 
   return (
     <div>
-
-      
-      {universitylist && (
-                      <div className="form-group">
-                        <label className="text-muted">University</label>
-                        <br /> <br />
-                        <Autocomplete
-                          // style={{ width: "100%" }}
-                          id="outlined-basic"
-                          variant="outlined"
-                          size="small"
-                          value={university}
-                          onChange={(event, newValue) => {
-                            fetchcollege(newValue);
-                          }}
-                          options={universitylist.map((option) => option)}
-                          sx={{ width: 300 }}
-                          renderInput={(params) => <TextField {...params} />}
-                        />
-                      </div>
-                    )}
- <br /> <br />
-{collegelist && (
-                      <div className="form-group">
-                        <label className="text-muted">College Name</label>
-                        <br /> <br />
-                        <Autocomplete
-                          // style={{ width: "100%" }}
-                          id="outlined-basic"
-                          variant="outlined"
-                          size="small"
-                          value={collegeName}
-                          onChange={(event, newValue) => {
-                           setCollegeName(newValue)
-                          }}
-                          options={collegelist.map((option) => option)}
-                          sx={{ width: 300 }}
-                          renderInput={(params) => <TextField {...params} />}
-                        />
-                      </div>
-                    )}
-
-      { 
-      collegeName && university &&
-      <Button variant="contained"    style={{ backgroundColor:"#F1C232",color:"black",marginTop:'20px' }} onClick={getdetail}>Get Info</Button>
-      }
-
-
-
-
-
-
-
-
 
 
 <Modal
@@ -209,8 +107,7 @@ fetch(`${ApiUrl}/moreInfo/getdetail/university/college/department`,{
        {  details &&
        <p style={{padding:'15px'}}>
 
-<span style={{fontWeight:'bold',paddingRight:'20px'}}>Department:</span> {details.department} <br/>
-<span style={{fontWeight:'bold',paddingRight:'20px'}}>No of Admins :</span>{details.admin}<br/>
+<span style={{fontWeight:'bold',paddingRight:'20px'}}>Department:</span> {department} <br/>
 <span style={{fontWeight:'bold',paddingRight:'20px'}}>No of Teachers :</span>{details.teachers}<br/>
 <span style={{fontWeight:'bold',paddingRight:'20px'}}>No of Students :</span>{details.students}<br/>
 <span style={{fontWeight:'bold',paddingRight:'20px'}}>Total no of runz created in this Department:</span>{details.listofrunz}<br/>
@@ -229,23 +126,7 @@ fetch(`${ApiUrl}/moreInfo/getdetail/university/college/department`,{
 }
 <Button   style={{ backgroundColor:"#F1C232",color:"black" }} onClick={()=>setModalOpen(false)}>back</Button>
 </div>
-      </Modal>
-
-
-
-
-
-     
-    
-
-
-
-
-
-
-
-
-
+        </Modal>
 <Box
       sx={{
         display: 'flex',
@@ -257,25 +138,23 @@ fetch(`${ApiUrl}/moreInfo/getdetail/university/college/department`,{
         },
       }}
     >
-        {
-            departmentlist&&
-            departmentlist.map((item)=>{
+      
+{
+            lablist&&
+            lablist.map((item)=>{
                 return (
-                  <Paper elevation={3}  key={item} style={{padding:'10px',backgroundColor:'#fbeec5',cursor: "pointer"}}  onClick={()=>{getmoreinfo(item,collegeName,university)}}> 
+                  <Paper elevation={3}  key={item} style={{padding:'10px',backgroundColor:'#fbeec5',cursor: "pointer"}} onClick={()=>{getmoreinfo(item,collegeName,university)}} > 
                   
                   
-                 <span style={{fontWeight:'bold'}}>Department:</span> {item}<br/>
+                 <span style={{fontWeight:'bold'}}>Lab:</span> {item}<br/>
                  <span style={{fontWeight:'bold'}}>College:</span> {collegeName}<br/>
                  <span style={{fontWeight:'bold'}}>University:</span> {university}
                   
                   </Paper>
                 )
               })}
-        
 
-    </Box>
-
-
+</Box>
     </div>
   )
 }
