@@ -1,3 +1,4 @@
+
 const Note = require("../models/Note");
 
 const getAll = async function (req, res, next) {
@@ -20,7 +21,11 @@ const getById = async function (req, res, next) {
   }
 };
 
-const postNote = function (req, res, next) {
+const postNote = async function (req, res, next) {
+  
+  let check= await Note.findOne({runID:req.body.runID})
+
+  if (!check){
   const newNote = new Note({
     runID: req.body.runID,
     notes: req.body.notes,
@@ -29,6 +34,7 @@ const postNote = function (req, res, next) {
     .save()
     .then((result) => res.json(result))
     .catch((err) => console.error(err));
+  }
 };
 
 const patchNotes = async (req, res) => {
