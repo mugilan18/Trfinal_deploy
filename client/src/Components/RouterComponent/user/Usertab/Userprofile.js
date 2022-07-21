@@ -255,7 +255,7 @@ const Userprofile = () => {
       ) : (
         <div>
           <Card>
-            <CardContent style={{ backgroundColor: "#fbeec5" }}>
+            <CardContent style={{ backgroundColor: "#E5E4E2" }}>
               <Grid container spacing={2} columns={16}>
                 <Grid item xs={8}>
                   <span style={{ fontWeight: "bold" }}>Name:</span>

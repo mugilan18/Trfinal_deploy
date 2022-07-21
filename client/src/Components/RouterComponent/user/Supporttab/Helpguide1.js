@@ -126,9 +126,9 @@ const Helpguide1 = () => {
           data={[
             { page: 'My Page', superadmin: 'Access', admin: 'Access', teacher: 'Access',student:'Access' },
             { page: 'Run', superadmin: 'Access', admin: "Access", teacher: "Access",student:"Access" },
-            { page: 'Edit produce', superadmin: 'Access', admin: "view", teacher: "view" ,student:"view"},
+            { page: 'Edit procedure', superadmin: 'Access', admin: "View", teacher: "View" ,student:"View"},
             { page: 'Add user', superadmin: 'Access', admin: "Access", teacher: "Access" ,student:"Access"},
-            { page: 'Inventory', superadmin: 'Access', admin: "Access", teacher: "Access" ,student:"No Access"},
+            // { page: 'Inventory', superadmin: 'Access', admin: "Access", teacher: "Access" ,student:"No Access"},
             { page: 'Setting', superadmin: 'Access', admin: "Access", teacher: "Access" ,student:"No Access"},
             { page: 'Support', superadmin: 'Access', admin: "Access", teacher: "Access",student:"Access" },
             { page: 'Profile', superadmin: 'Access', admin: "Access", teacher: "Access",student:"Access" },
@@ -155,7 +155,7 @@ const Helpguide1 = () => {
               </li>
               <li>
                 <p>
-                  Enter the user name, email address, and password to signup in
+                  Enter the user name, email address, and password to signup.
                 </p>
               </li>
             </ol>
@@ -173,14 +173,14 @@ const Helpguide1 = () => {
             <h2>Profile</h2>
             <ol>
               <li>
-                <p>Go to the profile page</p>
+                <p>Go to the profile page.</p>
               </li>
               <li>
-                <p>Click the edit option you can edit your profile page</p>
+                <p>Click the edit option you can edit your profile page.</p>
               </li>
               <li>
                 <p>
-                  Now you can edit your country name, state name, and year and
+                  Now you can edit your country name, state name, year and
                   semester on the profile page.
                 </p>
               </li>
@@ -206,7 +206,7 @@ const Helpguide1 = () => {
                 <p>
                   Users can search experiments with respect to their&nbsp; 
                   <strong>
-                    Id/pProcedure name/Lab name/Submitted by/Submitted time&nbsp;
+                    Id/Procedure name/Lab name/Status/Submitted by/Submitted time&nbsp;
                   </strong>
                   using the search input tag.
                 </p>
@@ -244,7 +244,7 @@ const Helpguide1 = () => {
                 <p>
                   Users can search experiments with respect to their&nbsp;
                   <strong>
-                    Id/Procedure name/Lab name/Submitted by/Submitted time&nbsp;
+                    Id/Procedure name/Lab name/Description/Assigned by/time&nbsp;
                   </strong>
                   using the search input tag.
                 </p>
@@ -262,19 +262,19 @@ const Helpguide1 = () => {
             <ol>
               <li>
                 <p>
-                  Click the * <strong>+ *</strong>option in the top right corner
+                  Click the <strong>*+*</strong>option in the top right corner
                   of the runz table, which opens the Add Runz modal.
                 </p>
               </li>
               <li>
                 <p>
                   Enter the <strong>Experiment description </strong>and select
-                  the Lab type, Procedure name also in the given order.
+                  the Lab type, Procedure name also in the given options.
                 </p>
               </li>
               <li>
                 <p>
-                  Click the <strong>save</strong> to create a runz.
+                  Click the <strong>save</strong> button to create a runz.
                 </p>
               </li>
             </ol>
@@ -290,19 +290,19 @@ const Helpguide1 = () => {
 
           <section id="procedure" style={{ display: "block" }}>
             <h2>Procedure</h2>
-            <strong style={{color:"red"}}> &nbsp;&nbsp;*Only Super Adim has access to create or edit procedure*</strong>
+            <strong style={{color:"red"}}> &nbsp;&nbsp;*Only Super Admin/Admin has access to create and edit procedure*</strong>
             <br/><br/>
             <ol>
               <li>
                 <p>
-                  <strong>Admin, Teacher and Student: </strong> The procedure page displays the list of experiments that can
+                  <strong>Teacher and Student: </strong> The procedure page displays the list of experiments that can
                   be accessed by the User.
                   
                 </p>
               </li>
               <li>
                 <p>
-                <strong>Super Admin: </strong> The procedure page displays the list of experiments that can
+                <strong>Super Admin, Admin: </strong> The procedure page displays the list of experiments that can
                   be accessed by the user, Super admin has access to each procedure where they can edit the existing procedure or they can create a new procedure.
                 </p>
               </li>
@@ -367,14 +367,13 @@ const Helpguide1 = () => {
             <ol>
               <li>
                 <p>
-                  User can create accounts for other user in Add user page.
+                  User can create accounts for other user in Add user tab.
                 </p>
               </li>
               <li>
                 <p>
   
-                  User should Enter the other user name and email address to whom they want to create account, on add user
-                  page and select the role.
+                  User should Enter the other user name and email address to whom they want to create account and select the role.
                   
                 </p>
               </li>
@@ -385,16 +384,16 @@ const Helpguide1 = () => {
             <ul>
        
               <li>
-                <p>Student can creacte account for <strong>Student</strong> only</p>
+                <p>Student can creacte account for <strong>Student</strong> only.</p>
               </li>
               <li>
-                <p>Teacher can creacte account for <strong>Student</strong> only also can assign lab</p>
+                <p>Teacher can creacte account for <strong>Student</strong> only also can assign lab.</p>
               </li>
               <li>
-                <p>Admin can creacte account for <strong>Student</strong> and <strong>Teacher</strong> also can assign lab within the department </p>
+                <p>Admin can creacte account for <strong>Student</strong> and <strong>Teacher</strong> also can assign lab within the department.</p>
               </li>
               <li>
-                <p>Super Admin can creacte account for <strong>Student</strong>, <strong>Teacher</strong> and <strong>Admin</strong> also can assign department and lab</p>
+                <p>Super Admin can creacte account for <strong>Student</strong>, <strong>Teacher</strong> and <strong>Admin</strong> also can assign department and lab.</p>
               </li>
             </ul>
 
@@ -438,19 +437,19 @@ const Helpguide1 = () => {
           <strong style={{color:"red"}}> &nbsp;&nbsp;*Student has no access to this page*</strong>
           <ol>
             <li>
-              <p>Click the setting option</p>
+              <p>Click the settings option</p>
             </li>
             <li>
               <p>
                 In the Manage user section, Admin can able to view/edit/update
-                the list of students/teacher;s role/country/ year/semester/access
+                the list of student/teacher roles /country/ year/semester/access
                 lab sections.
               </p>
             </li>
             <li>
               <p>
                 Enter the search option in the top right corner, now you can
-                search any one of these: Name\Email\Role\Id\Country\college name.
+                search any one of these: Name/Email/Role/Id/Country/College name.
               </p>
             </li>
             <li>
@@ -464,20 +463,20 @@ const Helpguide1 = () => {
               <p>
                 Super Admin can edit on&nbsp;
                 <strong>
-                  Super admin can  edit on Role, country, year, state,
-                  semester, and list of labs available
+                  Role, country, year, state,
+                  semester, and list of labs available for admin
                 </strong>
               </p>
               <p>
                 Admin can only edit on&nbsp;
                 <strong>
-                  Role, country, year, state, semester, and list of labs  available 
+                  Role, country, year, state, semester, and list of labs  available for teacher
                 </strong>
               </p>
               <p>
                 Teacher can only edit on&nbsp;
                 <strong>
-                Role, country, year, state, semester, and list of labs available
+                Role, country, year, state, semester, and list of labs available for student
                 </strong>
               </p>
             </li>
@@ -496,10 +495,7 @@ const Helpguide1 = () => {
             <p>You can log out of the system as follows</p>
             <ol>
               <li>
-                <p>Click on the user name icon in the top right corner.</p>
-              </li>
-              <li>
-                <p>Click on the 'LOGOUT' option</p>
+                <p>Click on the <strong>LOGOUT</strong> button in the top right corner.</p>
               </li>
             </ol>
             <div>

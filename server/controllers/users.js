@@ -192,7 +192,7 @@ const getaccess = async function (req, res, next) {
       res.json(updatedContent);
     }
     if(role==="teacher"){
-      const updatedContent = await User.find({ $and:[{role:"student"},{department:department },{collegeName:collegeName}]});
+      const updatedContent = await User.find({ $and:[{role:"student"},{department:department },{collegeName:collegeName},{ labtype: { $in: req.body.lab} }]});
       res.json(updatedContent);
     }
     

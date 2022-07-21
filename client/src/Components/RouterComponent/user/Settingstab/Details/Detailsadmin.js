@@ -107,11 +107,11 @@ const getmoreinfo=(lab,college,university)=>{
        {  details &&
        <p style={{padding:'15px'}}>
 
-<span style={{fontWeight:'bold',paddingRight:'20px'}}>Department:</span> {department} <br/>
-<span style={{fontWeight:'bold',paddingRight:'20px'}}>No of Teachers :</span>{details.teachers}<br/>
-<span style={{fontWeight:'bold',paddingRight:'20px'}}>No of Students :</span>{details.students}<br/>
-<span style={{fontWeight:'bold',paddingRight:'20px'}}>Total no of runz created in this Department:</span>{details.listofrunz}<br/>
-<span style={{fontWeight:'bold',paddingRight:'20px'}}>list of labs available :</span>
+{/* <span style={{fontWeight:'bold',paddingRight:'20px'}}>Department:</span> {department} <br/> */}
+<span style={{fontWeight:'bold',paddingRight:'20px'}}>Number of Teachers :</span>{details.teachers}<br/>
+<span style={{fontWeight:'bold',paddingRight:'20px'}}>Number of Students :</span>{details.students}<br/>
+<span style={{fontWeight:'bold',paddingRight:'20px'}}>Total number of Runz created:</span>{details.listofrunz}<br/>
+<span style={{fontWeight:'bold',paddingRight:'20px'}}>List of experiments available :</span>
       
        { 
        
@@ -143,12 +143,12 @@ const getmoreinfo=(lab,college,university)=>{
             lablist&&
             lablist.map((item)=>{
                 return (
-                  <Paper elevation={3}  key={item} style={{padding:'10px',backgroundColor:'#fbeec5',cursor: "pointer"}} onClick={()=>{getmoreinfo(item,collegeName,university)}} > 
+                  <Paper elevation={3}  key={item} style={{padding:'10px',paddingTop:'25px',paddingBottom:'20px',backgroundColor:'	#E5E4E2',cursor: "pointer"}} onClick={()=>{getmoreinfo(item,collegeName,university)}} > 
                   
-                  
-                 <span style={{fontWeight:'bold'}}>Lab:</span> {item}<br/>
-                 <span style={{fontWeight:'bold'}}>College:</span> {collegeName}<br/>
-                 <span style={{fontWeight:'bold'}}>University:</span> {university}
+                 
+                 <spam style={{fontWeight:'bold',fontSize:'17px',paddingRight:'10px'}}>Lab:</spam> <spam style={{fontSize:'17px'}}> {item}
+                  </spam>
+                
                   
                   </Paper>
                 )

@@ -42,13 +42,6 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const style = {
-  marginTop: "55px",
-  display: "flex",
-  justifyContent: "center",
-};
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -351,14 +344,15 @@ individuals.map((userr, ident) => {
         // onRequestClose={closeModale}
         
       >
-         <Typography variant="h5" style={style}>
+         <Typography variant="h5" style={{marginTop: "55px",display: "flex",justifyContent: "center",fontWeight:'bold'}}>
+          
         Share Runz
       </Typography>
       <br/><br/>
     {/* {datatoshare.ProcedureId} */}
       <div style={{width:"100%"}}>
      <label>Share With:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-              <TextField id="outlined-basic"  size="small" variant="outlined" value={sharewith} onChange={(e)=>setSharewith(e.target.value)} />
+              <TextField id="outlined-basic"  size="small" variant="outlined" value={sharewith} onChange={(e)=>setSharewith(e.target.value)} style={{width:'80%'}} />
               <p className='errormsg'>{sharewitherror}</p>
       </div> 
       <br/>
@@ -380,7 +374,7 @@ individuals.map((userr, ident) => {
           onRowClick= {(e,data) => {playUser(data.ProcedureId)}}
      
           options={{
-            actionsColumnIndex: -1, grouping:true,  pageSizeOptions:[5,10,15],pageSize:10,headerStyle: {
+            actionsColumnIndex: -1, grouping:true,  pageSizeOptions:[5,10],pageSize:10,headerStyle: {
               zIndex:0
             }     
           }}

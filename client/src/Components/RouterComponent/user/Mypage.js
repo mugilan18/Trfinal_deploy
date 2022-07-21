@@ -210,7 +210,7 @@ const Mypage = () => {
           title="Submitted"
           onRowClick= {(e,data) => playUser(data.ProcedureId)}
           options={{
-            actionsColumnIndex: -1, grouping:true,  pageSizeOptions:[5,10,15],pageSize:10,headerStyle: {
+            actionsColumnIndex: -1, grouping:true,  pageSizeOptions:[5,10],pageSize:10,headerStyle: {
               zIndex:0
             },tableLayout: "auto"     
           }}

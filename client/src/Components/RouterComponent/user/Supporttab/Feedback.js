@@ -91,7 +91,7 @@ alert("enter some content")
   }}
   return (
     <Card>
-    <CardContent style={{backgroundColor:"#fbeec5"}}>
+    <CardContent style={{backgroundColor:"#E5E4E2"}}>
   
     <p><span style={{fontWeight:"bold"}}>Feedback </span >&nbsp;&nbsp;&nbsp;<span style={{color:"#595958"}}>"Help us to improve"</span></p>
     <br/> <br/> 

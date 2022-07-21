@@ -261,7 +261,7 @@ fetch(`${ApiUrl}/moreInfo/getdetail/university/college/department`,{
             departmentlist&&
             departmentlist.map((item)=>{
                 return (
-                  <Paper elevation={3}  key={item} style={{padding:'10px',backgroundColor:'#fbeec5',cursor: "pointer"}}  onClick={()=>{getmoreinfo(item,collegeName,university)}}> 
+                  <Paper elevation={3}  key={item} style={{padding:'10px',backgroundColor:'	#E5E4E2',cursor: "pointer"}}  onClick={()=>{getmoreinfo(item,collegeName,university)}}> 
                   
                   
                  <span style={{fontWeight:'bold'}}>Department:</span> {item}<br/>
