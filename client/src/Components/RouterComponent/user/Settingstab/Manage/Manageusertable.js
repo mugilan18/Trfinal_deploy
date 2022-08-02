@@ -136,7 +136,8 @@ console.log(user)
       body: JSON.stringify({
       role:user.role,
       department:user.department,
-      collegeName:user.collegeName
+      collegeName:user.collegeName,
+      lab:user.labtype
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8"

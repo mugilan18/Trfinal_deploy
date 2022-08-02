@@ -193,7 +193,9 @@ const getUniversity= async(req,res)=>{
       
     ] );
 
-    const ids = metas.map((obj) => obj._id);
+    const idss = metas.map((obj) => obj._id);
+    const ids =  idss.filter(e =>  e);
+
   
     res.json({ ids});
     console.log( ids)

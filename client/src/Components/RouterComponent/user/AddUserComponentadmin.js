@@ -217,7 +217,10 @@ useEffect(()=>{
         procedureDescription: data.procedureDescription,
         labType: labTypetosent,
         experimentName: experimentNametosent,
-        userId: useridval
+        userId: useridval ,
+        collegeName:collegeName,
+        university:university,
+        department:department
       };
       console.log("list user", user)
       ApiService.addUser(user)
