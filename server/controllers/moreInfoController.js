@@ -124,7 +124,7 @@ const getLabs = async function (req, res, next) {
         {
           $match: {
             $and: [ 
-                {department: department}, 
+                {department: departmentval}, 
                 {college:collegeName}, 
              
             ]
